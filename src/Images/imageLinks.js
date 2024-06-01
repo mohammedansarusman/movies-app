@@ -1,0 +1,1 @@
+export const mainImage = "https://assets.nflxext.com/ffe/siteui/vlv3/a99688ca-33c3-4099-9baa-07a2e2acb398/4b2ac93d-8169-45bb-a174-b0c9eef144a9/AE-en-20240520-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
