@@ -1,12 +1,18 @@
 import React from 'react'
 import { useState, useRef } from 'react'
 import { validateEmail } from './utils/validateEmail';
+import {auth} from "./utils/firbase"
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+
 
 const Login = () => {
   // experiment:- if we click on email input tag then the border should be red.
   const [clickBorder,setClickBorder] = useState(false);
   const [signActivation, setSignActivation] = useState(true);
   const [errorMessage,setErrorMessage] = useState(null);
+
+  
 
   const email= useRef(null);
   const password= useRef(null);
@@ -23,7 +29,23 @@ const Login = () => {
   }
   const handleSignup = () =>{
     const message=validateEmail(email.current.value,password.current.value);
-    setErrorMessage(message);
+    // setErrorMessage(message);
+    if(message==="Success"){
+      console.log("auth:",auth)
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        setSignActivation(true);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorCode + " " + error.message)
+        // ..
+      });
+    }
 
   }
   return (
