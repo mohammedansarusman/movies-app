@@ -9,6 +9,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 const Login = () => {
   // experiment:- if we click on email input tag then the border should be red.
   const [clickBorder,setClickBorder] = useState(false);
+  // sign in button will display if it is true and sign-up will display if it is false
   const [signActivation, setSignActivation] = useState(true);
   const [errorMessage,setErrorMessage] = useState(null);
 
@@ -29,20 +30,31 @@ const Login = () => {
   }
   const handleSignup = () =>{
     const message=validateEmail(email.current.value,password.current.value);
-    // setErrorMessage(message);
+    console.log(message);
+    message === "Password format is not valid" && setErrorMessage(message);
+    message === "Email format is not valid" && setErrorMessage(message);
+
     if(message==="Success"){
-      console.log("auth:",auth)
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
-        // Signed up 
         const user = userCredential.user;
-        setSignActivation(true);
+        setErrorMessage(message);
+
+        setTimeout(
+          ()=>{
+            setSignActivation(true)
+            setErrorMessage(null)
+            email.current.value = ""
+            password.current.value = ""
+          },2000
+        );
         // ...
       })
       .catch((error) => {
+        console.log("error:",error)
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrorMessage(errorCode + " " + error.message)
+        setErrorMessage(error.message)
         // ..
       });
     }
@@ -100,7 +112,9 @@ const Login = () => {
           <strong onClick={handleSignUpClick} className='cursor-pointer'>Sign-up now</strong>
         </span>
       } 
-      <span className='text-red-500'>{errorMessage}</span>
+      {
+        errorMessage === "Success" ?  <span className='text-green-500'>{errorMessage}</span> : <span className='text-red-500'>{errorMessage}</span>
+      }
 
 
     </div>
