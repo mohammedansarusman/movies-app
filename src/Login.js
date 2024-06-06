@@ -2,7 +2,8 @@ import React from 'react'
 import { useState, useRef } from 'react'
 import { validateEmail } from './utils/validateEmail';
 import {auth} from "./utils/firbase"
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,9 +13,7 @@ const Login = () => {
   // sign in button will display if it is true and sign-up will display if it is false
   const [signActivation, setSignActivation] = useState(true);
   const [errorMessage,setErrorMessage] = useState(null);
-
-  
-
+  const navigate = useNavigate();
   const email= useRef(null);
   const password= useRef(null);
 
@@ -58,7 +57,29 @@ const Login = () => {
         // ..
       });
     }
+  }
+  const handleSignInButton= () =>{
+    const message=validateEmail(email.current.value,password.current.value);
+    message === "Password format is not valid" && setErrorMessage(message);
+    message === "Email format is not valid" && setErrorMessage(message);
 
+    if(message==="Success"){
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value).
+        then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log(user);
+          navigate('/browse');
+
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage)
+        });
+    }
+    
   }
   return (
     <div className="flex flex-col">
@@ -100,13 +121,16 @@ const Login = () => {
       </div>
       {
         signActivation ? 
-          <button className='w-[300px] h-[40px] bg-red-600 my-4'>Sign In</button>
+          <button 
+            className='w-[300px] h-[40px] bg-red-600 my-4'
+            onClick={handleSignInButton}
+          >Sign In</button>
         :
-          <button className='w-[300px] h-[40px] bg-gray-400 my-4'
-                  onClick={handleSignup}
+          <button 
+            className='w-[300px] h-[40px] bg-gray-400 my-4'
+            onClick={handleSignup}
           >Sign Up</button>
       }
-      
       {
         signActivation && <span className='text-slate-50 my-3'>New to Netflix ? 
           <strong onClick={handleSignUpClick} className='cursor-pointer'>Sign-up now</strong>
@@ -115,10 +139,7 @@ const Login = () => {
       {
         errorMessage === "Success" ?  <span className='text-green-500'>{errorMessage}</span> : <span className='text-red-500'>{errorMessage}</span>
       }
-
-
     </div>
   )
 }
-
 export default Login

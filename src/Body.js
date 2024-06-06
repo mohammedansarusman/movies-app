@@ -3,6 +3,7 @@ import { mainImage } from "./Images/imageLinks"; // Assuming you have this impor
 import Login from './Login';
 
 const Body = () => {
+
     return (
         <div className="relative w-full h-screen">
             {console.log("Body component rendered")}
