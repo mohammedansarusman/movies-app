@@ -1,9 +1,11 @@
 import React from 'react'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { validateEmail } from './utils/validateEmail';
 import {auth} from "./utils/firbase"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateName } from './utils/redux/userSlice';
 
 
 
@@ -14,10 +16,13 @@ const Login = () => {
   const [signActivation, setSignActivation] = useState(true);
   const [errorMessage,setErrorMessage] = useState(null);
   const navigate = useNavigate();
+
+  const name = useRef(null);
   const email= useRef(null);
   const password= useRef(null);
+  const dispatch = useDispatch();
 
-
+  
   const handleEmailClick = () =>{
     setClickBorder(true);
   }
@@ -37,17 +42,23 @@ const Login = () => {
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
         const user = userCredential.user;
-        setErrorMessage(message);
+        updateProfile(auth.currentUser, {displayName:name.current.value}).then(() => {
+          console.log("disp:",auth.currentUser)
+          dispatch(updateName(auth.currentUser.displayName));
 
+        }).catch((error) => {
+          // An error occurred
+          // ...
+        });
+        setErrorMessage(message);
         setTimeout(
           ()=>{
             setSignActivation(true)
             setErrorMessage(null)
-            email.current.value = ""
-            password.current.value = ""
           },2000
         );
-        // ...
+        navigate("/browse")
+
       })
       .catch((error) => {
         console.log("error:",error)
@@ -81,6 +92,7 @@ const Login = () => {
     }
     
   }
+
   return (
     <div className="flex flex-col">
       {console.log("Login componenet")}
@@ -96,6 +108,7 @@ const Login = () => {
         !signActivation && 
           <div className = "w-[300px] h-[50px] my-4 outline outline-1  outline-gray-500">
           <input 
+            ref = {name}
             placeholder='Enter your Name' 
             className = "w-[100%] h-[100%] bg-black/[0.95] outine:none border-gray-500 px-2 text-gray-400 focus:border-gray-300">
           </input>
