@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateName } from './utils/redux/userSlice';
+import AuthUpdate from './AuthUpdate';
 
 
 
@@ -21,6 +22,8 @@ const Login = () => {
   const email= useRef(null);
   const password= useRef(null);
   const dispatch = useDispatch();
+
+  console.log("what is auth when login opened:",auth)
 
   
   const handleEmailClick = () =>{
@@ -44,7 +47,7 @@ const Login = () => {
         const user = userCredential.user;
         updateProfile(auth.currentUser, {displayName:name.current.value}).then(() => {
           console.log("disp:",auth.currentUser)
-          dispatch(updateName(auth.currentUser.displayName));
+          dispatch(updateName(auth.currentUser.email));
 
         }).catch((error) => {
           // An error occurred
@@ -80,7 +83,8 @@ const Login = () => {
           // Signed in 
           const user = userCredential.user;
           console.log(user);
-          navigate('/browse');
+          dispatch(updateName(user.email));
+
 
           // ...
         })
@@ -95,6 +99,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col">
+      <AuthUpdate />
       {console.log("Login componenet")}
       {signActivation ? 
         <div>
