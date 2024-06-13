@@ -10,6 +10,7 @@ import { addNowPlayingMovies } from "./utils/redux/movieSlice";
 const Browse = () =>{
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    console.log("hello");
 
     const netflixUser = useSelector((globalStore)=>globalStore.user.userName)
     console.log("user name:",netflixUser)
