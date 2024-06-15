@@ -11,6 +11,7 @@ const moviesSlice = createSlice({
         }
     }
 })
+console.log("movieSlice executed")
 
 export default moviesSlice.reducer;
 export const {addNowPlayingMovies} = moviesSlice.actions;
