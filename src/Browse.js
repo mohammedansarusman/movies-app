@@ -27,7 +27,7 @@ const Browse = () => {
     }
     return (
         <div>
-            <div className="w-full h-[100%] bg-black flex justify-center">
+            <div className="w-full  bg-blue-400 flex justify-center z-10 relative">
                 {console.log("rendered Browse component")}
                 <AuthUpdate />
                 <div className="w-[25%] h-[100px] bg-black flex flex-row justify-center items-center">
@@ -42,7 +42,7 @@ const Browse = () => {
                 </div>
             </div>
             <MainContainer />
-            <SecondaryContainer />
+            <SecondaryContainer /> 
         </div>
     )
 }
