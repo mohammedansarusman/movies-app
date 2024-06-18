@@ -4,8 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import AuthUpdate from "./AuthUpdate";
 import usePlayingMovies from "./utils/Hooks/usePlayingMovies";
+import useTopRatedMovies from "./utils/Hooks/useTopRatedMovies";
+
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import usePopularMovies from "./utils/Hooks/usePopularMovies ";
+import useUpcomingMovies from "./utils/Hooks/useUpcomingMovies";
 
 const Browse = () => {
     const navigate = useNavigate();
@@ -15,8 +19,10 @@ const Browse = () => {
     const netflixUser = useSelector((globalStore) => globalStore.user.userName)
     console.log("user name:", netflixUser)
 
-    console.log("before usePlayingMovies")
     usePlayingMovies();
+    useTopRatedMovies();
+    usePopularMovies();
+    useUpcomingMovies();
 
     console.log("after usePlayingMovies")
 
