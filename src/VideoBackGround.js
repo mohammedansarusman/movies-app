@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 import useVideoBackGroundApi from './utils/Hooks/useVideoBackGroundApi';
 
 const VideoBackGround = ({ movieId }) => {
-  const trailerId = useSelector((store) => store.movie.trailerUniqueId)
   useVideoBackGroundApi(movieId);
+  const trailerId = useSelector((store) => store.movie.trailerUniqueId)
+  console.log("trailer id:",trailerId)
+
   return (
     <div>
-      {console.log("hello Video background")}
-      <iframe 
+      trailerId && <iframe 
         className = "w-screen aspect-video"
         src={"https://www.youtube.com/embed/"+trailerId+"?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&loop=1&playlist="+trailerId}
         title="YouTube video player"
@@ -17,7 +18,6 @@ const VideoBackGround = ({ movieId }) => {
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen>
       </iframe>
-      {/* "L4DrolmDxmw" */}
     </div>
   )
 }

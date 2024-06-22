@@ -1,6 +1,9 @@
 import React from 'react'
 
 const VideoTitle = ({ overview, title }) => {
+  console.log("overview:",overview);
+  console.log("title:",title);
+
   return (
     <div className='w-[30%] h-[100%] aspect-video  flex-col px-[20px] py-[20%] absolute bg-gradient-to-r from-black'>
       <h1 className = "text-2xl text-white">{title}</h1>
@@ -10,7 +13,6 @@ const VideoTitle = ({ overview, title }) => {
         <button className='bg-white text-black ml-[10px] p-[10px] rounded-lg'>More Info</button>
 
       </div>
-
     </div>
   )
 }

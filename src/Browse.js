@@ -14,17 +14,13 @@ import useUpcomingMovies from "./utils/Hooks/useUpcomingMovies";
 const Browse = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    console.log("hello");
 
     const netflixUser = useSelector((globalStore) => globalStore.user.userName)
-    console.log("user name:", netflixUser)
 
     usePlayingMovies();
     useTopRatedMovies();
     usePopularMovies();
     useUpcomingMovies();
-
-    console.log("after usePlayingMovies")
 
 
     const handleSignout = () => {
@@ -34,7 +30,6 @@ const Browse = () => {
     return (
         <div>
             <div className="w-full  bg-blue-400 flex justify-center z-10 relative">
-                {console.log("rendered Browse component")}
                 <AuthUpdate />
                 <div className="w-[25%] h-[100px] bg-black flex flex-row justify-center items-center">
                     <h1 className="text-red-500">Movie App</h1>

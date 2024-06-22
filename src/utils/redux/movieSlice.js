@@ -24,10 +24,9 @@ const moviesSlice = createSlice({
         },
         addTrailerId: (state, action) => {
             state.trailerUniqueId = action.payload;
-        }
+        },
+
     }
 })
-console.log("movieSlice executed")
-
 export default moviesSlice.reducer;
-export const { addNowPlayingMovies, addTrailerId, addTopRatedMovies, addPopularMovies, addUpcomingMovies } = moviesSlice.actions;
+export const { addNowPlayingMovies, addTrailerId, addTopRatedMovies, addPopularMovies, addUpcomingMovies, addRandomNumber } = moviesSlice.actions;

@@ -8,6 +8,7 @@ import Browse from "./Browse";
 
 function App() {
   
+  
   const appRouter = createBrowserRouter([
     {
       path:"/",
@@ -20,7 +21,6 @@ function App() {
   ])
   return (
     <div className="App">
-      {console.log("app component rendered")}
       <RouterProvider router={appRouter}/>
     </div>
   );

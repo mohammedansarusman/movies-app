@@ -8,14 +8,15 @@ import { useDispatch } from "react-redux";
 const useVideoBackGroundApi = (movieId) =>{
     const dispatch = useDispatch();
     const getMovieId = async () => {
+        console.log("movie id:",movieId)
         const response = await fetch('https://api.themoviedb.org/3/movie/' + movieId + '/videos?language=en-US', API_OPTIONS);
-        console.log("response", response);
         const data = await response.json();
-        const filterMovies = data.results.filter((res) => res.type === "Trailer")
-        const trailer = filterMovies.length ? filterMovies[0] : data.results[0];
+        console.log("data in api:",data);
+        
+        const trailer = data.results.filter((res) => res?.type === "Trailer");
         console.log("one trailer", trailer);
-        dispatch(addTrailerId(trailer.key));
-
+        dispatch(addTrailerId(trailer[0]?.key));
+        console.log("useEffect 5, video background");
       }
     
       useEffect(

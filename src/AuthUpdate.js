@@ -9,7 +9,7 @@ const AuthUpdate = () =>{
     const dispatch =useDispatch();
     const navigate = useNavigate();
     useEffect(()=>{
-      onAuthStateChanged(auth,(user)=>{
+      const unsubscribe = onAuthStateChanged(auth,(user)=>{
         if(user){
             auth.currentUser && dispatch(updateName(user?.email));
             console.log("onAuthState called")
@@ -18,6 +18,7 @@ const AuthUpdate = () =>{
             navigate("/");
         }
       })
+      return() => { unsubscribe() };
   },[])
     return(
         <div>

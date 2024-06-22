@@ -8,15 +8,14 @@ const SecondaryContainer = () => {
   const movies_popular = useSelector((store) => store.movie.popularMovies)
   const movies_upcoming = useSelector((store) => store.movie.upcomingMovies)
 
-
-  console.log("secondary",movies);
   return (
       <div className=' bg-black w-[100%]'>
         <div className='-mt-[170px] relative'>
-          <MovieList title = {"Now Playing Movies"} movie = {movies}/>
-          <MovieList title = {"Top Rated Movies"} movie = {movies_top}/>
-          <MovieList title = {"Popular Movies"} movie = {movies_popular}/>
-          <MovieList title = {"Upcoming Movies"} movie = {movies_upcoming}/>
+          {console.log("secondary container")}
+          {movies && <MovieList title = {"Now Playing Movies"} movie = {movies}/>}
+          {movies_top && <MovieList title = {"Top Rated Movies"} movie = {movies_top}/>}
+          {movies_popular && <MovieList title = {"Popular Movies"} movie = {movies_popular}/>}
+          {movies_upcoming && <MovieList title = {"Upcoming Movies"} movie = {movies_upcoming}/>}
         </div>
       </div>
   )
