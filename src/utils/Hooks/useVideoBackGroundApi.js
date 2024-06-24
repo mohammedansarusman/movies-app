@@ -22,6 +22,6 @@ const useVideoBackGroundApi = (movieId) =>{
       useEffect(
         () => {
           getMovieId();
-        }, []);
+        });
 }
 export default useVideoBackGroundApi;

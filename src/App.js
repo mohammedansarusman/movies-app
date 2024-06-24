@@ -1,4 +1,5 @@
 import Body from './Body';
+import MovieDetails from './MovieDetails';
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Browse from "./Browse";
@@ -17,7 +18,11 @@ function App() {
     {
       path:"/browse",
       element:<Browse />
-    }
+    },
+    {
+      path:"/browse/movie/:id",
+      element:<MovieDetails />
+    },
   ])
   return (
     <div className="App">
