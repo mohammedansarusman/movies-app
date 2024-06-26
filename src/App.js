@@ -3,6 +3,7 @@ import MovieDetails from './MovieDetails';
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Browse from "./Browse";
+import SearchMovie from './SearchMovie';
 
 
 
@@ -22,6 +23,10 @@ function App() {
     {
       path:"/browse/movie/:id",
       element:<MovieDetails />
+    },
+    {
+      path:"/search",
+      element:<SearchMovie />
     },
   ])
   return (
