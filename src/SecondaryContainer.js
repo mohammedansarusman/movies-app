@@ -10,7 +10,7 @@ const SecondaryContainer = () => {
 
   return (
       <div className=' bg-black w-[100%]'>
-        <div className='-mt-[170px] relative'>
+        <div className='-mt-[70px] relative'>
           {console.log("secondary container")}
           {movies && <MovieList title = {"Now Playing Movies"} movie = {movies}/>}
           {movies_top && <MovieList title = {"Top Rated Movies"} movie = {movies_top}/>}
