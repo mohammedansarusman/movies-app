@@ -12,7 +12,7 @@ const usePopularMovies = () => {
         const response = await fetch('https://api.themoviedb.org/3/movie/popular?page=1', API_OPTIONS)
         const data = await response.json();
         dispatch(addPopularMovies(data.results))
-        console.log("useEffect 3")
+        console.log("useEffect popularmovies")
 
     }
     useEffect(

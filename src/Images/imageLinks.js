@@ -1,2 +1,3 @@
 export const mainImage = "https://assets.nflxext.com/ffe/siteui/vlv3/a99688ca-33c3-4099-9baa-07a2e2acb398/4b2ac93d-8169-45bb-a174-b0c9eef144a9/AE-en-20240520-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
 export const netflixLogo = "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+export const searchIcon = "https://vls.rta.ae/content/images/dashboard/icons/search.svg"

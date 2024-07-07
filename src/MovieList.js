@@ -10,8 +10,8 @@ const MovieList = ({ title, movie }) => {
             <div className = 'w-full flex overflow-x-scroll'>
                 <div className='flex'>
                     {
-                        movie?.map((mov) => (
-                                <MovieCard key={Math.random()} posterPath={mov.poster_path} position = {mov.id}/>
+                        movie?.map((mov,index) => (
+                                <MovieCard key={Math.random()} posterPath={mov.poster_path} movieId = {mov.id} data = {mov}/>
                         ))
                     }
                 </div>

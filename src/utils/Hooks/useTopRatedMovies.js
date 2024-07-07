@@ -11,7 +11,7 @@ const useTopRatedMovies = () => {
         const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?page=1', API_OPTIONS)
         const data = await response.json();
         dispatch(addTopRatedMovies(data.results))
-        console.log("useEffect 2")
+        console.log("useEffect TopRatedMovie")
 
     }
     useEffect(
